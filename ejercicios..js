@@ -487,6 +487,34 @@ Ejercicios:Crear funciones que cumplan con los siguientes requerimientos:
 
     
    1. Obtener una lista de los géneros sin repetir
+
+   /* 
+1 OBTENER UNA LISTA DE LOS GÉNEROS SIN REPETIR
+ENTRADA
+arreglo de objetos
+SALIDA
+Arreglo de cadenas de texto
+PROCESO
+1.	Creo un arreglo para mi lista de géneros
+2.	Escojo el primer objeto
+3.	Escojo la propiedad genero
+4.	Esta la propiedad ausente de mi lista?
+a.	Si:la agrego a mi lista
+5.	Repito hasta terminar mi arreglo
+
+   
+   */
+
+function getGenres(movies) {
+    return movies.reduce((acc, movie) => {
+        if (!acc.includes(movie.genre)) {
+            acc.push(movie.genre);
+        }
+        return acc;
+      },[]);
+    }
+
+    /* 
    2. Obtener una lista de los nombres de los directores sin repetir
    3. Obtener una lista con únicamente los nombres de los actores protagonistas de todas las películas, sin repetir
    4. Obtener uan lista de clasificaciones (rating) sin repetir
@@ -516,4 +544,5 @@ Ejercicios:Crear funciones que cumplan con los siguientes requerimientos:
     **trimmedSynopsis debe estar limitada a 10 palabras, y debe tener puntos suspensivos al final.
 */
 
-/*Happy Hacking Koders!!!*/
+
+console.log(getGenres(movies));
