@@ -501,21 +501,49 @@ PROCESO
 4.	Esta la propiedad ausente de mi lista?
 a.	Si:la agrego a mi lista
 5.	Repito hasta terminar mi arreglo
+6.	Devuelvo el valor de mi lista de generos
+
 
    
-   */
+*/
 
-function getGenres(movies) {
+const getGenres = (movies) => {
     return movies.reduce((acc, movie) => {
         if (!acc.includes(movie.genre)) {
             acc.push(movie.genre);
         }
         return acc;
       },[]);
-    }
+}
+
 
     /* 
-   2. Obtener una lista de los nombres de los directores sin repetir
+    2. Obtener una lista de los nombres de los directores sin repetir
+        ENTRADA
+        arreglo de objetos
+        SALIDA
+        Arreglo de strings
+        PROCESO
+        1.	Creo un arreglo para mi lista de nombres de directores
+        2.	Escojo el primer objeto
+        3.	Escojo la propiedad director
+        4.	Esta la propiedad ausente de mi lista?
+        a.	Si:la agrego a mi lista
+        5.	Repito hasta terminar mi arreglo
+        6.	Devuelvo el valor de mi lista de directores
+
+    */
+const getDirectors = (movies) => {
+    return movies.reduce((acc, movie) => {
+        if (!acc.includes(movie.director)) {
+            acc.push(movie.director);
+        }
+        return acc;
+        },[]);
+}
+
+    /* 
+   
    3. Obtener una lista con únicamente los nombres de los actores protagonistas de todas las películas, sin repetir
    4. Obtener uan lista de clasificaciones (rating) sin repetir
    5. Obtener una lista de las películas que tienen una duración entre 2 rangos, por ejemplo las películas que duran entre 100 y 120 mins ( los valores de las duraciones deben ser dinámicos)
