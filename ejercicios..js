@@ -569,21 +569,181 @@ const getActorNames = (movies) => {
     });
     return acc;
   }, []);
+}
 
-  /* 
- 
- 4. Obtener uan lista de clasificaciones (rating) sin repetir
+  /* 4. Obtener uan lista de clasificaciones (rating) sin repetir
+ ENTRADA
+arreglo de objetos
+SALIDA
+Arreglo de cadenas de texto
+PROCESO
+1.	Creo mi lista vacia
+2.	Escojo el primer objecto del arreglo
+3.	Escojo la propiedad rating
+4.	¿Está la propiedad ausente de mi lista?
+a.	La incluyo
+5.	Repito hasta recorrer todo el arreglo
+6.	Devuelvo lista de clasificaciones
+ */
+
+
+
+const getRatings = (movies) => {
+  return movies.reduce((acc, movie) => {
+    if (!acc.includes(movie.rating)) {
+      acc.push(movie.rating);
+    }
+    return acc;
+  }, []);
+}
+
+
+/* 
  5. Obtener una lista de las películas que tienen una duración entre 2 rangos, por ejemplo las películas que duran entre 100 y 120 mins ( los valores de las duraciones deben ser dinámicos)
- 6. Obtener una lista de películas con base en su clasificación
- 7. Obtener una lista de películas películas estrenadas en un rango de años (por ejemplo, entre 2000 - 2010, los valores de los años deben ser dinámicos)
- 8. Obtener una lista de películas con base en el país al que pertenecen
+ENTRADA
+Arreglo de objetos
+Limite inferior
+Limite superior
+SALIDA
+Un arreglo que contenga el titulo de las películas cuya duración se encuentre dentro del rango
+PROCESO
+1.	Creo una lista para mis películas
+2.	Establezco límite superior
+3.	Establezco límite inferior
+4.	Escojo mi primer objeto
+5.	De la duración tomo solo los números
+6.	¿El valor de la duración en números es menor al límite superior y mayor al límite inferior?
+a.	Incluyo la propiedad titulo dentro de mi lista de películas
+7.	Repito hasta terminar mi arreglo
+8.	Devuelvo lista de peliculas
+*/
+
+const getMoviesByDuration = (movies, lowerLimit, upperLimit) => {
+  return movies.reduce((acc, movie) => {
+    const duration = parseInt(movie.duration);
+    if (duration >= lowerLimit && duration <= upperLimit) {
+      acc.push(`${movie.title} - ${movie.duration}`);
+    }
+    return acc;
+  }, []);}
+
+/* 6. Obtener una lista de películas con base en su clasificación
+ENTRADA
+Arreglo de objetos
+clasificación
+SALIDA
+Arreglo de cadenas de texto
+PROCESO
+1.	Creo una lista de películas
+2.	Consulto la clasificación
+3.	Escojo mi primer objeto
+4.	Es su clasificación igual a la clasificación escogida?
+a.	Agrego la propiedad titulo a mi lista de películas
+5.	Repito hasta terminar el arreglo
+6.	Devuelvo lista de peliculas */
+
+const getMoviesByRating = (movies, rating) => {
+  return movies.reduce((acc, movie) => {
+    if (movie.rating === rating) {
+      acc.push(movie.title);
+    }
+    return acc;
+  }, []);
+}
+
+
+/*  7. Obtener una lista de películas películas estrenadas en un rango de años (por ejemplo, entre 2000 - 2010, los valores de los años deben ser dinámicos)
+ENTRADA
+Arreglo de objetos
+Limite inferior
+Limite superior
+SALIDA
+Un arreglo que contenga el titulo de las películas cuya duración se encuentre dentro del rango
+PROCESO
+1.	Creo una lista para mis películas
+2.	Establezco límite superior
+3.	Establezco límite inferior
+4.	Escojo mi primer objeto
+5.	¿El valor del año de salida es menor al límite superior y mayor al límite inferior?
+a.	Incluyo la propiedad titulo dentro de mi lista de películas
+6.	Repito hasta terminar mi arreglo
+7.	Devuelvo lista de películas*/
+
+const getMoviesByReleaseYear = (movies, lowerLimit, upperLimit) => {
+  return movies.reduce((acc, movie) => {
+    if (movie.releaseYear >= lowerLimit && movie.releaseYear <= upperLimit) {
+      acc.push(`${movie.title} - ${movie.releaseYear}`);
+    }
+    return acc;
+  }, []); 
+}
+
+/* 8. Obtener una lista de películas con base en el país al que pertenecen
+ENTRADA
+Arreglo de objetos
+País al que pertenecen
+SALIDA
+Arreglo de cadenas de texto
+PROCESO
+1.	Creo una lista para mis películas
+2.	Obtengo el país para clasificar películas
+3.	Escojo mi primer objeto
+4.	¿esta película pertenece al país escogido?
+a.	Incluyo la propiedad título dentro de mi lista de películas 
+5.	Repito hasta terminar mi arreglo
+6.	Devuelvo lista de películas
+ */
+
+const getMoviesByCountry = (movies, country) => {
+  return movies.reduce((acc, movie) => {
+    if (movie.country === country) {
+      acc.push(`${movie.title}`);
+    }
+    return acc;
+  }, []);
+}
+  /* 
+
  9. Obtener una lista de las películas que no obtuvieron premios Óscar
- 10. Obtener la cantidad de películas de cada clasficación. Esta información debe estar organizada de la siguiente forma:
-      {
-          [nombre_de_la_clasificacion]:[cantidad]
-      }
-      Es decir, la propiedad del objeto resultante deber ser la clasificación, y el valor de esa propiedad debe ser la cantidad de películas que pertenecen a esa clasificación
-  11. Obtener la cantidad de películas de cada país, organizada de la siguiente forma:
+ENTRADA
+Arreglo de objetos
+SALIDA
+Arreglo de cadenas de texto
+PROCESO
+1.	Creo una lista para mis películas
+2.	Escojo mi primer objeto
+3.	¿Esta película no obtuvo premios Óscar?
+a.	Incluyo la propiedad título dentro de mi lista de películas
+4.	Repito hasta terminar mi arreglo
+5.	Devuelvo lista de películas
+
+  */
+
+const getMoviesWithoutOscar = (movies) => {
+  return movies.reduce((acc, movie) => {
+    if (movie.oscarAwards === 0) {
+      acc.push(movie.title);
+    }
+    return acc;
+  }, []);
+}
+
+/* 
+10. Obtener la cantidad de películas de cada clasficación. Esta información debe estar organizada de la siguiente forma:
+{
+    [nombre_de_la_clasificacion]:[cantidad]
+}
+Es decir, la propiedad del objeto resultante deber ser la clasificación, y el valor de esa propiedad debe ser la cantidad de películas que pertenecen a esa clasificación
+ENTRADA
+arreglo de objetos
+SALIDA
+arreglo de objetos
+PROCESO
+
+
+*/
+/*
+ 11. Obtener la cantidad de películas de cada país, organizada de la siguiente forma:
       {
           [pais]:[cantidad]
       }
@@ -599,5 +759,12 @@ const getActorNames = (movies) => {
   **trimmedSynopsis debe estar limitada a 10 palabras, y debe tener puntos suspensivos al final.
 */
 
-
-  console.log(getGenres(movies));
+console.log(getGenres(movies).sort());
+console.log(getDirectors(movies).sort());
+console.log(getActorNames(movies).sort());
+console.log(getRatings(movies).sort());
+console.log(getMoviesByDuration(movies, 100, 120).sort());
+console.log(getMoviesByRating(movies, "R").sort());
+console.log(getMoviesByReleaseYear(movies, 2000, 2010).sort());
+console.log(getMoviesByCountry(movies, "Nueva Zelanda").sort());
+console.log(getMoviesWithoutOscar(movies).sort());
