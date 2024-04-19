@@ -741,14 +741,79 @@ arreglo de objetos
 PROCESO
 
 
+
 */
+
+const organizeMoviesByRating = (movies, rating) => {
+  let result = movies.reduce((acc, movie) => {
+    return acc[movie.rating] ? { ...acc, [movie.rating]: acc[movie.rating] + 1 } : { ...acc, [movie.rating]: 1 };
+  }, {});
+  return result
+}
+
+/*  11. Obtener la cantidad de películas de cada país, organizada de la siguiente forma:
+      {
+          [pais]:[cantidad]
+      } */
+
+const organizeMoviesByCountry2 = (movies) => {
+  let result = movies.reduce((acc, movie) => {
+    return acc[movie.country] ? { ...acc, [movie.country]: acc[movie.country] + 1 } : { ...acc, [movie.country]: 1 };
+  }, {});
+  return result;
+}
+
+const organizeMoviesByProperty = (movies, property) => {
+  let result = movies.reduce((acc, movie) => {
+    return acc[movie[property]] ? { ...acc, [movie[property]]: acc[movie[property]] + 1 } : { ...acc, [movie[property]]: 1 };
+  }, {});
+  return result;
+}
+
+      /* 
+
+
+  12. Obtener la edad promedio de los actores protagonistas
+  ENTRADA
+Arreglo de objetos
+SALIDA
+Edad promedio
+PROCESO
+1.	El total de la edad es 0 porque no se ha registrado ningún actor
+2.	Creo una lista de protagonistas
+3.	Escojo el primer elemento
+4.	Escojo los protagonistas
+5.	Escojo el primer protagonista
+6.	Agrego su propiedad edad al total
+7.	Repito con todos los objetos del arreglo
+8.	Devuelvo el resultado de la división del total entre la propiedad longitud de la lista de actores
+
+*/
+
+
+const getAverageAge = (movies) => {
+  let result = movies.reduce((acc, movie, _ , arr) => {
+    let subresult = movie.protagonists.reduce((acc, protagonist, _ , arr) => {
+      return acc + protagonist.age / arr.length;
+      }, 0);
+      return acc + subresult / arr.length;
+    }, 0);
+    return result;
+}
+
+/* 
+  13. Dado el nombre de un actor, obtener la cantidad de películas de la lista en las que aparece
+
+*/
+ 
 /*
  11. Obtener la cantidad de películas de cada país, organizada de la siguiente forma:
       {
           [pais]:[cantidad]
       }
-  12. Obtener la edad promedio de los actores protagonistas
-  13. Dado el nombre de un actor, obtener la cantidad de películas de la lista en las que aparece
+
+
+
  14. Obtener una lista que contenga objetos de cada película con el siguiente formato:
   
   {
@@ -759,6 +824,15 @@ PROCESO
   **trimmedSynopsis debe estar limitada a 10 palabras, y debe tener puntos suspensivos al final.
 */
 
+const getShortMoviesObjetc = (movies) => {
+  return movies.map((movie) => {
+    return {
+      title: `${movie.title} - ${movie.director} - ${movie.duration}`,
+      trimmedSynopsis: `${movie.synopsis.split(" ").slice(0, 10).join(" ")}...`
+    };
+  });
+}
+
 console.log(getGenres(movies).sort());
 console.log(getDirectors(movies).sort());
 console.log(getActorNames(movies).sort());
@@ -768,3 +842,8 @@ console.log(getMoviesByRating(movies, "R").sort());
 console.log(getMoviesByReleaseYear(movies, 2000, 2010).sort());
 console.log(getMoviesByCountry(movies, "Nueva Zelanda").sort());
 console.log(getMoviesWithoutOscar(movies).sort());
+console.log(organizeMoviesByRating(movies));
+console.log(organizeMoviesByCountry2(movies));
+console.log(organizeMoviesByProperty(movies, "oscarAwards"));
+console.log(getAverageAge(movies));
+console.log(getShortMoviesObjetc(movies));
