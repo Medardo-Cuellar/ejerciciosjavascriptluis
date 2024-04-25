@@ -43,10 +43,12 @@ la tarjeta debe verse asi
 */
 
 const getShortDescription = (description) => {
-  if (description.length > 10) {
-    return `${description.split(" ").slice(0, 10).join(" ")}...`;
-  }
-  return description;
+    const shortDescription = description.split(' ');
+    if(shortDescription.length > 10)
+    {
+        return ` ${shortDescription.slice(0, 10).join(' ')}...`;
+    } 
+    return description;
 };
 
 const createProductCard = (product) => {
