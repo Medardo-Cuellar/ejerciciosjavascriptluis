@@ -10,92 +10,84 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mt-md-5 mt-sm-3">
         <div class="row">
             <div class="col-xs-3 col-md-4">
                 <h1 class="text-center">Creacion de productos</h1>
-                <form id="creacionProducto" class="bg-dark text-white border rounded shadow p-3">
-                    <div class="mb-3">
+<!--                 <form id="product-form" class="bg-dark text-white border rounded shadow p-3">
+                    <div class="form-group">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" />
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label for="descripcion" class="form-label">Descripcion</label>
-                        <input type="number" class="form-control" id="descripcion" name="descripcion" />
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" />
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label for="precio" class="form-label">Precio</label>
                         <input type="number" class="form-control" id="precio" name="precio" />
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label for="categoria" class="form-label">Categoria</label>
-                        <input type="number" class="form-control" id="categoria" name="categoria" />
+                        <input type="text" class="form-control" id="categoria" name="categoria" />
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label for="imagen" class="form-label">Imagen</label>
-                        <input type="number" class="form-control" id="imagen" name="imagen" />
+                        <input type="text" class="form-control" id="imagen" name="imagen" />
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button id="boton-crear-usuario" class="btn btn-primary">Guardar</button>
+                    <div class="mt-3 d-flex justify-content-end">
+                        <button id="boton-crear-producto" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form> -->
+                <form id="product-form" class="bg-dark text-white border rounded shadow p-3">
+                    <div class="form-group">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value = "Articulo" />
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis porro dolore consectetur, ducimus iste, odit minus earum voluptatem, itaque laboriosam ad! Temporibus deserunt odio esse cumque molestias impedit dolorem doloremque." />
+                    </div>
+                    <div class="form-group">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="precio" name="precio" value="200"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria" class="form-label">Categoria</label>
+                        <input type="text" class="form-control" id="categoria" name="categoria" value="default"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input type="text" class="form-control" id="imagen" name="imagen" value ="https://picsum.photos/id/21/200" />
+                    </div>
+                    <div class="mt-3 d-flex justify-content-end">
+                        <button id="boton-crear-producto" class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
             </div>
             <div class="col-xs-3 col-md-8">
-                <h1 class="text-center">Lista de productos</h1>
+                <h1 class="text-center mt-sm-3">Lista de productos</h1>
                 <div class="mb-3">
                     <input type="text" class="form-control" id="filter" name="filter"
                         placeholder="filtrar por categoria" />
                 </div>
                 <div class="container">
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <div class="col">
-                            <div class="card mb-3">
-                                <img src="https://picsum.photos/200/200" class="card-img-top img-thumbnail" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">nombre</h5>
-                                    <p class="card-text">descripcion</p>
-                                    <div class="d-flex justify-content-end">
-                                        <p class="card-text"><small class="text-muted">precio: $500.00 mxn</small></p>
+                    <div id="product-wrapper" class="row row-cols-1 row-cols-md-3 g-4">
+                        <!-- Aqui comienzan a crearse dinamicamente las tarjetas 
+                        la tarjeta debe verse asi:
+                            <div class="col">
+                                <div class="card mb-3">
+                                    <img src="https://picsum.photos/200/200" class="card-img-top img-thumbnail" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">nombre</h5>
+                                        <p class="card-text">descripcion</p>
+                                        <div class="d-flex justify-content-end">
+                                            <p class="card-text"><small class="text-muted">precio: $500.00 mxn</small></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="card mb-3">
-                                <img src="https://picsum.photos/200/200" class="card-img-top img-thumbnail" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">nombre</h5>
-                                    <p class="card-text">descripcion</p>
-                                    <div class="d-flex justify-content-end">
-                                        <p class="card-text"><small class="text-muted">precio: $500.00 mxn</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card mb-3">
-                                <img src="https://picsum.photos/200/200" class="card-img-top img-thumbnail" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">nombre</h5>
-                                    <p class="card-text">descripcion</p>
-                                    <div class="d-flex justify-content-end">
-                                        <p class="card-text"><small class="text-muted">precio: $500.00 mxn</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card mb-3">
-                                <img src="https://picsum.photos/200/200" class="card-img-top img-thumbnail" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">nombre</h5>
-                                    <p class="card-text">descripcion</p>
-                                    <div class="d-flex justify-content-end">
-                                        <p class="card-text"><small class="text-muted">precio: $500.00 mxn</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        -->
                     </div>
                 </div>
             </div>
