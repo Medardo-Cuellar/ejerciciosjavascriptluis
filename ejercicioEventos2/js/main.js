@@ -19,7 +19,7 @@
   3.- Agregar la funcionalidad para que cada que agregue una persona nueva, esta se vea reflejada junto con las anteriores en la interfaz de usuario
   */
 
-  let persons = [];
+let persons = [];
 
 let botonCreacionUsuario = document.getElementById("boton-crear-usuario");
 
@@ -27,15 +27,42 @@ botonCreacionUsuario.addEventListener("click", (event) => {
     event.preventDefault();
     console.log("click");
     let inputList = document.querySelectorAll("#person-form input");
-    console.log(inputList);
-
-    let personObject = {};
-
+    console.log(inputList); // NodeList(3) [input#name, input#email, input#password]
+    let person = {}; //un string vacio
     inputList.forEach((input) => {
-    console.log(input.value);
-    console.log(input.name);
-    personObject[input.name] = input.value
-    });
-
-    console.log(personobject);
+      let value = input.value;
+      let property = input.name;
+      person[property] = value;// le agrega el nombre y el valor al objeto person
+      console.log(property);
+      console.log(value);
+    }); // iteramos sobre cada elemento de la lista de entradas y obtenemos el valor de cada uno
+    console.log(person);
+    
+    persons = [...persons, person]; //agregamos el objeto person al arreglo persons no se usa el push porque se modifica el arreglo original
+    console.log(persons);
+    renderPersons(persons, "listaUsuarios");
+   /*  
+    console.log(persons); */
 });
+
+
+const createePersonItem = (person) => {
+  let {name} = person;
+  let personListItem = document.createElement("li");
+  personListItem.classList.add("list-group-item");
+  let personNameText = document.createTextNode(name);
+  personListItem.append(personNameText);
+  return personListItem;
+}
+
+const renderPersons = (dataArray, wrapperId) => {
+  let wrapper = document.getElementById(wrapperId);
+
+  while(wrapper.firstChild){
+    wrapper.removeChild(wrapper.firstChild);
+  }
+  dataArray.forEach((person) => {
+    let personItem = createePersonItem(person);
+    wrapper.append(personItem);
+  });
+};
