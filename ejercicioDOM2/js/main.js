@@ -69,13 +69,19 @@ const getShortDescription = (description) => {
   }
   return description;
 };
+let categoriaAttribute = document.createAttribute("data-categoria");
+
+console.log(categoriaAttribute);
 
 const createProductCard = (product) => {
   let { nombre, descripcion, precio, categoria, imagen } = product;
   let productCard = document.createElement("div");
   productCard.classList.add("col");
+  productCard.setAttribute("data-categoria", categoria);
   let card = document.createElement("div");
   card.classList.add("card");
+  
+
 
   let cardImage = document.createElement("img");
   cardImage.setAttribute("src", imagen);
@@ -104,6 +110,7 @@ const createProductCard = (product) => {
   priceContainer.append(price);
   cardBody.append(title, description, priceContainer);
   card.append(cardImage, cardBody);
+
   productCard.append(card); /* 
   console.log(typeof productCard);
   console.log(productCard) */
@@ -119,5 +126,5 @@ const printProducts = (dataArray, wrapperId) => {
     let productCard = createProductCard(product);
     wrapper.append(productCard);
   });
-
+  console.log(wrapper)
 };
