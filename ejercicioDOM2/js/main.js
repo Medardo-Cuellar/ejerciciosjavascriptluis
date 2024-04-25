@@ -18,8 +18,8 @@ botonCrearProducto.addEventListener("click", (event) => {
     product[property] = input.value;
     //console.log(`Propiedad: ${property}, Valor: ${value}`);
   });
+  products.push(product);
   //console.log(product);
-  products = [...products, product];
   //console.log(products)
   printProducts(products, "product-wrapper");
 });
@@ -28,22 +28,22 @@ let botonGenerarProducto = document.getElementById("boton-generar-producto");
 let numeroArticulo = 1;
 
 botonGenerarProducto.addEventListener("click", (event) => {
-    event.preventDefault();
-    let precio = Math.floor(Math.random() * 1000);
-    let randomeImage = Math.floor(Math.random() * 300) + 1;
-    let imagen = `https://picsum.photos/id/${randomeImage}/200`
+  event.preventDefault();
+  let precio = Math.floor(Math.random() * 1000);
+  let randomeImage = Math.floor(Math.random() * 100) + 1;
+  let imagen = `https://picsum.photos/id/${randomeImage}/200`;
 
-    let productInput = document.getElementById("nombre");
-    productInput.value = `Producto ${numeroArticulo}`;
-    let categoryInput = document.getElementById("categoria");
-    categoryInput.value = `Categoria${numeroArticulo}`;
-    let priceInput = document.getElementById("precio");
-    priceInput.value = precio;
-    let imageInput = document.getElementById("imagen");
-    imageInput.value = imagen;
-    numeroArticulo++;
-    });
-    
+  let productInput = document.getElementById("nombre");
+  productInput.value = `Producto ${numeroArticulo}`;
+  let categoryInput = document.getElementById("categoria");
+  categoryInput.value = `Categoria${numeroArticulo}`;
+  let priceInput = document.getElementById("precio");
+  priceInput.value = precio;
+  let imageInput = document.getElementById("imagen");
+  imageInput.value = imagen;
+  numeroArticulo++;
+});
+
 /* 
 
 la tarjeta debe verse asi
@@ -63,12 +63,11 @@ la tarjeta debe verse asi
 */
 
 const getShortDescription = (description) => {
-    const shortDescription = description.split(' ');
-    if(shortDescription.length > 10)
-    {
-        return ` ${shortDescription.slice(0, 10).join(' ')}...`;
-    } 
-    return description;
+  const shortDescription = description.split(" ");
+  if (shortDescription.length > 10) {
+    return ` ${shortDescription.slice(0, 10).join(" ")}...`;
+  }
+  return description;
 };
 
 const createProductCard = (product) => {
@@ -105,16 +104,20 @@ const createProductCard = (product) => {
   priceContainer.append(price);
   cardBody.append(title, description, priceContainer);
   card.append(cardImage, cardBody);
-  productCard.append(card);
+  productCard.append(card); /* 
   console.log(typeof productCard);
-  console.log(productCard)
+  console.log(productCard) */
   return productCard;
 };
 
 const printProducts = (dataArray, wrapperId) => {
   let wrapper = document.getElementById(wrapperId);
+  while (wrapper.firstChild) {
+    wrapper.removeChild(wrapper.firstChild);
+  } // esto evita que se vaya agregando una y otra vez los productos
   dataArray.forEach((product) => {
     let productCard = createProductCard(product);
     wrapper.append(productCard);
   });
+
 };
