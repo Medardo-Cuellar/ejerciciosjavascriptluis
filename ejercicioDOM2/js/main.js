@@ -73,13 +73,16 @@ const createProductCard = (product) => {
   description.classList.add("card-text");
   description.textContent = getShortDescription(descripcion);
 
+  let priceContainer = document.createElement("div");
+  priceContainer.classList.add("d-flex", "justify-content-end");
   let price = document.createElement("p");
   price.classList.add("card-text");
   let small = document.createElement("small");
   small.classList.add("text-muted");
   small.textContent = `Precio: $${precio} mxn`; // ya se le agrega el precio como se desea
   price.append(small);
-  cardBody.append(title, description, price);
+  priceContainer.append(price);
+  cardBody.append(title, description, priceContainer);
   card.append(cardImage, cardBody);
   productCard.append(card);
   return productCard;
