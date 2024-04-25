@@ -24,6 +24,26 @@ botonCrearProducto.addEventListener("click", (event) => {
   printProducts(products, "product-wrapper");
 });
 
+let botonGenerarProducto = document.getElementById("boton-generar-producto");
+let numeroArticulo = 1;
+
+botonGenerarProducto.addEventListener("click", (event) => {
+    event.preventDefault();
+    let precio = Math.floor(Math.random() * 1000);
+    let randomeImage = Math.floor(Math.random() * 300) + 1;
+    let imagen = `https://picsum.photos/id/${randomeImage}/200`
+
+    let productInput = document.getElementById("nombre");
+    productInput.value = `Producto ${numeroArticulo}`;
+    let categoryInput = document.getElementById("categoria");
+    categoryInput.value = `Categoria${numeroArticulo}`;
+    let priceInput = document.getElementById("precio");
+    priceInput.value = precio;
+    let imageInput = document.getElementById("imagen");
+    imageInput.value = imagen;
+    numeroArticulo++;
+    });
+    
 /* 
 
 la tarjeta debe verse asi
@@ -52,10 +72,9 @@ const getShortDescription = (description) => {
 };
 
 const createProductCard = (product) => {
-  let { nombre, descripcion, precio, imagen } = product;
+  let { nombre, descripcion, precio, categoria, imagen } = product;
   let productCard = document.createElement("div");
   productCard.classList.add("col");
-
   let card = document.createElement("div");
   card.classList.add("card");
 
@@ -87,6 +106,8 @@ const createProductCard = (product) => {
   cardBody.append(title, description, priceContainer);
   card.append(cardImage, cardBody);
   productCard.append(card);
+  console.log(typeof productCard);
+  console.log(productCard)
   return productCard;
 };
 
