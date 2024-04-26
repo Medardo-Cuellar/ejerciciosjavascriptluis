@@ -127,6 +127,7 @@ const printProducts = (dataArray, wrapperId) => {
 /*   console.log(wrapper)
   console.log(typeof wrapper) */
   console.log(getCategories(products));
+  
 };
 
 const getCategories = (dataArray) => {
@@ -137,4 +138,11 @@ const getCategories = (dataArray) => {
     });
     return uniqueCategories;
 }
- 
+
+const createCategoryList = (categories) => {
+    categories.forEach((category) => {
+        let categoryOption = document.createElement("li");
+        categoryOption.setAttribute("value", category);
+        categoryOption.textContent = category;
+    });
+};
